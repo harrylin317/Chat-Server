@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"net"
-	"strings"
 )
 
 type Message struct {
@@ -40,7 +39,7 @@ func handleClient(client net.Conn, clientid int, msgs chan Message) {
 	reader := bufio.NewReader(client)
 	for {
 		msg, _ := reader.ReadString('\n')
-		msg = strings.TrimLeft(msg, "\n")
+		//msg = strings.TrimLeft(msg, "\n")
 		newMessage := Message{sender: clientid, message: msg}
 		msgs <- newMessage
 	}
